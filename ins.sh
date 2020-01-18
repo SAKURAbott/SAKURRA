@@ -1,19 +1,19 @@
 #!/usr/bin/env bash
-cd $HOME/Tshake
-install() {
+cd $HOME/TeKToK
+ins() {
 rm -rf $HOME/.telegram-cli
 sudo chmod +x tg
-chmod +x Tshake
-chmod +x ts
-./ts
+chmod +x TeKToK
+chmod +x tk
+./tk
 }
 get() {
-rm -fr Tshake.lua
+rm -fr TeKToK.lua
 rm -fr sudo.lua
-wget "https://raw.githubusercontent.com/tshakeabas/Tshake/master/Tshake.lua"
-lua start.lua
+wget "https://raw.githubusercontent.com/TeKToKBot/TeKToK/master/TeKToK.lua"
+lua run.lua
 }
-installall(){
+ins_sudo(){
 apt update
 apt upgrade
 sudo apt-get update
@@ -39,16 +39,16 @@ sudo apt-get update
 sudo apt-get upgrade -y
 }
 if [ "$1" = "ins" ]; then
-install
+ins
 fi
 if [ "$1" = "get" ]; then
 get
 fi
-installall
+ins_sudo
 cd ..
 rm -rf luarocks*
-cd Tshake
+cd TeKToK
 rm -rf luarocks*
-lua start.lua
+lua run.lua
 
 
