@@ -6123,7 +6123,6 @@ end ---- Chat_Type = 'GroupBot'
 
 if text == 'تفعيل' and DevBot(msg) then 
 local url,res = http.request('http://host-corup.ml/Ch/?id='..msg.sender_user_id_)
-vardump(JSON.decode(url))
 data = JSON.decode(url)
 if data.Ch_Member.TekToK ~= true then
 send(msg.chat_id_,msg.id_,'👤┇لا يمكنك استخدام البوت\n📛┇عليك الاشتراك في قناة السورس\n📤┇لتتمكن من استخدام الاوامر \n🔰┇CH ~ [@b666P]')   
