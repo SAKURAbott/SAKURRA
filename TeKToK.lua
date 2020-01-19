@@ -5822,10 +5822,31 @@ send(msg.chat_id_,msg.id_,"☑┇تم حذف جميع الملفات")
 return false
 end
 if text == 'نقل الاحصائيات' and DevTeKToK(msg) then
-local Users = database:smembers('TeKToK:'..bot_id.."userss")
-local Groups = database:smembers('TeKToK:'..bot_id..'groups') 
+local Users = database:smembers('tshake:'..bot_id.."userss")
+local Groups = database:smembers('tshake:'..bot_id..'groups') 
 for i = 1, #Groups do
 database:sadd(bot_id..'TeKToK:Chek:Groups',Groups[i])  
+local list1 = database:smembers('tshake:'..bot_id..'creatorbasic:'..Groups[i])
+for k,v in pairs(list1) do
+database:sadd(bot_id.."TeKToK:Basic:Constructor"..Groups[i], v)
+end
+local list2 = database:smembers('tshake:'..bot_id..'creator:'..Groups[i])
+for k,v in pairs(list2) do
+database:sadd(bot_id.."TeKToK:Constructor"..Groups[i], v)
+end
+local list3 = database:smembers('tshake:'..bot_id..'owners:'..Groups[i])
+for k,v in pairs(list3) do
+database:sadd(bot_id.."TeKToK:Manager"..Groups[i], v)
+end
+local list4 = database:smembers('tshake:'..bot_id..'mods:'..Groups[i])
+for k,v in pairs(list4) do
+database:sadd(bot_id.."TeKToK:Mod:User"..Groups[i], v)
+end
+database:set(bot_id.."TeKToK:Lock:tagservrbot"..Groups[i],true)   
+list ={"Lock:Bot:kick","Lock:User:Name","Lock:hashtak","Lock:Cmd","Lock:Link","Lock:forward","Lock:Keyboard","Lock:geam","Lock:Photo","Lock:Animation","Lock:Video","Lock:Audio","Lock:vico","Lock:Sticker","Lock:Document","Lock:Unsupported","Lock:Markdaun","Lock:Contact","Lock:Spam"}
+for i,lock in pairs(list) do 
+database:set(bot_id..'TeKToK:'..lock..Groups[i],"del")    
+end
 end
 for i = 1, #Users do
 database:sadd(bot_id..'TeKToK:UsersBot',Users[i])  
@@ -5875,6 +5896,8 @@ Text = [[
 🌐┇TeKToK TEAM 
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
 📊┇ [Source Channel](https://t.me/JJJUU)
+
+📊┇ [Source Info](https://t.me/TekTok0)
 
 🌐┇ [TeKToK iNDT](https://t.me/JJJUU)
  
