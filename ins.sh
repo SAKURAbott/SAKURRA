@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
-cd $HOME/TeKToK
+cd $HOME/SAKURRA
 ins() {
 rm -rf $HOME/.telegram-cli
 sudo chmod +x tg
-chmod +x TeKToK
-chmod +x tk
-./tk
+chmod +x SAKURRA
+chmod +x sa
+./sa
 }
 get() {
 rm -fr TeKToK.lua
 rm -fr sudo.lua
-wget "https://raw.githubusercontent.com/TeKToKBot/TeKToK/master/TeKToK.lua"
+wget "https://raw.githubusercontent.com/SAKURAbott/SAKURRAh/mater/SAKURRA.lua"
 lua run.lua
 }
 ins_sudo(){
@@ -47,7 +47,7 @@ fi
 ins_sudo
 cd ..
 rm -rf luarocks*
-cd TeKToK
+cd SAKURRA
 rm -rf luarocks*
 lua run.lua
 
