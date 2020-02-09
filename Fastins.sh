@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
-cd $HOME/TeKToK
+cd $HOME/SAKURRA
 rm -rf $HOME/.telegram-cli
 ins() {
 sudo chmod +x tg
-chmod +x TeKToK
-chmod +x tk
-./tk
+chmod +x SAKURRA
+chmod +x sa
+./sa
 }
 if [ "$1" = "ins" ]; then
 ins
